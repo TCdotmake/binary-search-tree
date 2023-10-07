@@ -30,6 +30,19 @@ function mkTree(arr) {
         return node;
       }
     },
+    find(value) {
+      let current = this.root;
+      while (current) {
+        if (current.data == value) {
+          return current;
+        } else if (value < current.data) {
+          current = current.left;
+        } else {
+          current = current.right;
+        }
+      }
+      return current;
+    },
   };
 }
 

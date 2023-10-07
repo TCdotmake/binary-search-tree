@@ -6,6 +6,7 @@ export function app() {
   for (let i = 0; i < 21; i++) {
     arr.push(randomNum(99));
   }
+  arr.push(69);
   let tree = mkTree(arr);
   tree.buildTree();
   const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -21,4 +22,5 @@ export function app() {
     }
   };
   prettyPrint(tree.root);
+  console.log(tree.find(69));
 }
