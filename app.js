@@ -26,5 +26,12 @@ export function app() {
   tree.postorder((current) => console.log(current));
   let node = tree.find(69);
   console.log(node);
-  console.log(tree.depth(node));
+  for (let i = 0; i < 21; i++) {
+    tree.insert(randomNum(130) + 100);
+  }
+  prettyPrint(tree.root);
+  console.log(tree.isBalanced());
+  tree.rebalance();
+  prettyPrint(tree.root);
+  console.log(tree.isBalanced());
 }

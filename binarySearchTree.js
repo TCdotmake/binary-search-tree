@@ -8,15 +8,11 @@ function mkNode(data) {
   };
 }
 
-function mkTree(arr) {
+function mkTree(n) {
   return {
-    arr,
+    arr: [...sortAndClean(n)],
     root: null,
-    buildTree() {
-      //trim duplicate and sort
-      let arr = sortAndClean(this.arr);
-      console.log("sortedArr:");
-      console.log(arr);
+    buildTree(arr = this.arr) {
       this.root = this.bst(arr, 0, arr.length - 1);
     },
     bst(arr, begin, end) {
@@ -225,6 +221,20 @@ function mkTree(arr) {
           return depth;
         }
       }
+    },
+    isBalanced() {
+      // let root = this.root;
+      // let left = this.height(this.root.left);
+      // let right = this.height(this.root.right);
+      // let diff = Math.abs(this.height(this.root.left) - this.height(this.root.right));
+      return Math.abs(
+        this.height(this.root.left) - this.height(this.root.right)
+      ) <= 1
+        ? true
+        : false;
+    },
+    rebalance() {
+      this.buildTree(this.inorder());
     },
   };
 }
