@@ -17,7 +17,7 @@ function mkTree(arr) {
       let arr = sortAndClean(this.arr);
       console.log("sortedArr:");
       console.log(arr);
-      this.root = this.bst(arr, 0, arr.length);
+      this.root = this.bst(arr, 0, arr.length - 1);
     },
     bst(arr, begin, end) {
       if (begin > end) {
@@ -42,6 +42,86 @@ function mkTree(arr) {
         }
       }
       return current;
+    },
+    insert(value) {
+      let current = this.root;
+      if (current == null) {
+        this.null = mkNode(value);
+      } else {
+        while (current) {
+          if (value == current.data) {
+            //duplicate value, do nothing
+            break;
+          } else if (value < current.data) {
+            //if empty
+            if (current.left == null) {
+              current.left = mkNode(value);
+              break;
+            } else {
+              current = current.left;
+            }
+          } else {
+            if (current.right == null) {
+              current.right = mkNode(value);
+              break;
+            } else {
+              current = current.right;
+            }
+          }
+        }
+      }
+    },
+    delete(value) {
+      this.root = this.deleteRec(this.root, value);
+    },
+    deleteRec(node, value) {
+      //base case, value is not in bst
+      if (node == null) {
+        return node;
+      }
+      //travel the tree with recursive call
+      if (value < node.data) {
+        node.left = this.deleteRec(node.left, value);
+        return node;
+      }
+      if (value > node.data) {
+        node.right = this.deleteRec(node.right, value);
+        return node;
+      }
+      //arriving here meant node.data == value
+      //we are looking to delete the node in the parameter
+
+      //best case: node is a leaf
+      if (node.left == null && node.right == null) {
+        return null;
+      }
+
+      //2nd best, one child is empty
+      else if (node.left == null) {
+        return node.right;
+      } else if (node.right == null) {
+        return node.left;
+      }
+      //worst case, two children
+      else {
+        //replace with inorder sucessor
+        let parent = node;
+        let succ = node.right;
+
+        while (succ.left) {
+          parent = succ;
+          succ = parent.left;
+        }
+        //sucessor found, replace data
+        node.data = structuredClone(succ.data);
+
+        if (node == parent) {
+          parent.right = succ.right;
+        } else {
+          parent.left = succ.right;
+        }
+        return node;
+      }
     },
   };
 }
