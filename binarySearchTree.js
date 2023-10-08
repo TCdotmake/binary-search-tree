@@ -123,6 +123,25 @@ function mkTree(arr) {
         return node;
       }
     },
+    inorder(
+      fn = (n) => {
+        console.log(n);
+      }
+    ) {
+      let queue = [];
+      queue.push(this.root);
+      while (queue[0]) {
+        let current = queue[0];
+        if (current.left) {
+          queue.push(current.left);
+        }
+        if (current.right) {
+          queue.push(current.right);
+        }
+        fn(current);
+        queue.shift();
+      }
+    },
   };
 }
 

@@ -22,17 +22,5 @@ export function app() {
     }
   };
   prettyPrint(tree.root);
-  tree.insert(32);
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  tree.insert(randomNum(33));
-  prettyPrint(tree.root);
-  tree.delete(32);
-  prettyPrint(tree.root);
+  tree.inorder();
 }
