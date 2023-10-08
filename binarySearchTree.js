@@ -211,6 +211,21 @@ function mkTree(arr) {
       let r = this.height(node.right);
       return 1 + Math.max(l, r);
     },
+    depth(node) {
+      let depth = 0;
+      let current = this.root;
+      while (current) {
+        if (node.data < current.data) {
+          current = current.left;
+          depth += 1;
+        } else if (node.data > current.data) {
+          current = current.right;
+          depth += 1;
+        } else {
+          return depth;
+        }
+      }
+    },
   };
 }
 

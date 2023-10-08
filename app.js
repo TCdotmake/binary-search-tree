@@ -24,5 +24,7 @@ export function app() {
   prettyPrint(tree.root);
   console.log(tree.postorder());
   tree.postorder((current) => console.log(current));
-  console.log(tree.height(tree.root));
+  let node = tree.find(69);
+  console.log(node);
+  console.log(tree.depth(node));
 }
