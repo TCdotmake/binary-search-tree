@@ -22,7 +22,5 @@ export function app() {
     }
   };
   prettyPrint(tree.root);
-  tree.levelorder((current) => {
-    console.log(current.data);
-  });
+  tree.inorder((current) => console.log(current));
 }

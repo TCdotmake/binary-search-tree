@@ -123,8 +123,8 @@ function mkTree(arr) {
         return node;
       }
     },
-    recordvalues(arr, node) {
-      arr.push;
+    recordvalues(node, arr) {
+      arr.push(node.data);
     },
     levelorder(fn = null) {
       let queue = [];
@@ -147,6 +147,25 @@ function mkTree(arr) {
       }
       if (!fn) {
         return dataArr;
+      }
+    },
+    inorder(fn = this.recordvalues) {
+      let arr = [];
+      this.inorderRec(this.root, fn, arr);
+      if (fn === this.recordvalues) {
+        return arr;
+      }
+    },
+    inorderRec(node, fn, arr) {
+      //base case
+      if (node != null) {
+        this.inorderRec(node.left, fn, arr);
+        if (fn === this.recordvalues) {
+          fn(node, arr);
+        } else {
+          fn(node);
+        }
+        this.inorderRec(node.right, fn, arr);
       }
     },
   };
