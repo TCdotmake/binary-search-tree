@@ -157,7 +157,6 @@ function mkTree(arr) {
       }
     },
     inorderRec(node, fn, arr) {
-      //base case
       if (node != null) {
         this.inorderRec(node.left, fn, arr);
         if (fn === this.recordvalues) {
@@ -166,6 +165,42 @@ function mkTree(arr) {
           fn(node);
         }
         this.inorderRec(node.right, fn, arr);
+      }
+    },
+    preorder(fn = this.recordvalues) {
+      let arr = [];
+      this.preorderRec(this.root, fn, arr);
+      if (fn === this.recordvalues) {
+        return arr;
+      }
+    },
+    preorderRec(node, fn, arr) {
+      if (node != null) {
+        if (fn === this.recordvalues) {
+          fn(node, arr);
+        } else {
+          fn(node);
+        }
+        this.preorderRec(node.left, fn, arr);
+        this.preorderRec(node.right, fn, arr);
+      }
+    },
+    postorder(fn = this.recordvalues) {
+      let arr = [];
+      this.postorderRec(this.root, fn, arr);
+      if (fn === this.recordvalues) {
+        return arr;
+      }
+    },
+    postorderRec(node, fn, arr) {
+      if (node != null) {
+        this.postorderRec(node.left, fn, arr);
+        this.postorderRec(node.right, fn, arr);
+        if (fn === this.recordvalues) {
+          fn(node, arr);
+        } else {
+          fn(node);
+        }
       }
     },
   };

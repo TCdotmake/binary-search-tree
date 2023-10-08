@@ -22,5 +22,6 @@ export function app() {
     }
   };
   prettyPrint(tree.root);
-  tree.inorder((current) => console.log(current));
+  console.log(tree.postorder());
+  tree.postorder((current) => console.log(current));
 }
