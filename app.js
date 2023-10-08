@@ -1,37 +1,40 @@
 import sortAndClean from "./sortAndClean.js";
 import randomNum from "./randomNum.js";
 import { mkTree } from "./binarySearchTree.js";
+import prettyPrint from "./prettyPrint.js";
 export function app() {
   let arr = [];
-  for (let i = 0; i < 21; i++) {
+  for (let i = 0; i < 11; i++) {
     arr.push(randomNum(99));
   }
-  arr.push(69);
   let tree = mkTree(arr);
   tree.buildTree();
-  const prettyPrint = (node, prefix = "", isLeft = true) => {
-    if (node === null) {
-      return;
-    }
-    if (node.right !== null) {
-      prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
-    }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-    if (node.left !== null) {
-      prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
-    }
-  };
   prettyPrint(tree.root);
+  console.log(`Balanced?: ${tree.isBalanced()}`);
+  console.log("LevelOrder:");
+  console.log(tree.levelorder());
+  console.log("InOrder:");
+  console.log(tree.inorder());
+  console.log("PreOrder:");
+  console.log(tree.preorder());
+  console.log("PostOrder:");
   console.log(tree.postorder());
-  tree.postorder((current) => console.log(current));
-  let node = tree.find(69);
-  console.log(node);
-  for (let i = 0; i < 21; i++) {
-    tree.insert(randomNum(130) + 100);
+  console.log("Inserting elements over 99");
+  for (let i = 0; i < 11; i++) {
+    tree.insert(randomNum(99) + 99);
   }
   prettyPrint(tree.root);
-  console.log(tree.isBalanced());
+  console.log(`Balanced?: ${tree.isBalanced()}`);
+  console.log(`Rebalanced tree:`);
   tree.rebalance();
   prettyPrint(tree.root);
-  console.log(tree.isBalanced());
+  console.log(`Balanced?: ${tree.isBalanced()}`);
+  console.log("LevelOrder:");
+  console.log(tree.levelorder());
+  console.log("InOrder:");
+  console.log(tree.inorder());
+  console.log("PreOrder:");
+  console.log(tree.preorder());
+  console.log("PostOrder:");
+  console.log(tree.postorder());
 }

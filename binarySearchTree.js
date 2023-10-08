@@ -223,10 +223,6 @@ function mkTree(n) {
       }
     },
     isBalanced() {
-      // let root = this.root;
-      // let left = this.height(this.root.left);
-      // let right = this.height(this.root.right);
-      // let diff = Math.abs(this.height(this.root.left) - this.height(this.root.right));
       return Math.abs(
         this.height(this.root.left) - this.height(this.root.right)
       ) <= 1
