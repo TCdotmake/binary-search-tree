@@ -203,6 +203,14 @@ function mkTree(arr) {
         }
       }
     },
+    height(node) {
+      if (node == null) {
+        return 0;
+      }
+      let l = this.height(node.left);
+      let r = this.height(node.right);
+      return 1 + Math.max(l, r);
+    },
   };
 }
 

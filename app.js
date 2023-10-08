@@ -24,4 +24,5 @@ export function app() {
   prettyPrint(tree.root);
   console.log(tree.postorder());
   tree.postorder((current) => console.log(current));
+  console.log(tree.height(tree.root));
 }
