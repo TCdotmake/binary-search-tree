@@ -123,13 +123,13 @@ function mkTree(arr) {
         return node;
       }
     },
-    inorder(
-      fn = (n) => {
-        console.log(n);
-      }
-    ) {
+    recordvalues(arr, node) {
+      arr.push;
+    },
+    levelorder(fn = null) {
       let queue = [];
       queue.push(this.root);
+      let dataArr = [];
       while (queue[0]) {
         let current = queue[0];
         if (current.left) {
@@ -138,8 +138,15 @@ function mkTree(arr) {
         if (current.right) {
           queue.push(current.right);
         }
-        fn(current);
+        if (fn) {
+          fn(current);
+        } else {
+          dataArr.push(current.data);
+        }
         queue.shift();
+      }
+      if (!fn) {
+        return dataArr;
       }
     },
   };
